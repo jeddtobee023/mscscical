@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title></title>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" >
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<style>
+			
+			.table
+			{
+				margin-bottom:0;
+			}
+			
+			@media(min-width:768px)
+			{
+				.row-controls .col-sm-6:first-child
+				{
+					padding-right: 5px;
+				}
+				.row-controls .col-sm-6:last-child
+				{
+					padding-left: 5px;
+				}
+			}
+			
+			@media(max-width:768px)
+			{
+				
+				.table:first-child
+				{
+					margin-bottom: 10px;
+				}
+				
+				.well-controls
+				{
+					overflow-y: scroll;
+					padding: 0;
+				}
+				
+				.table .btn{
+					font-size: 1.2em;
+				}
+			}
+			
+			@media(min-width:430px)
+			{
+				
+				.table .btn{
+					font-size: 2em;
+				}
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav pull-right">
+					
+				</ul>
+				<div class="navbar-header">
+					<span class="navbar-brand">Scientific Calculator</span>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container" style="padding-top: 75px;">
+			<div class="center-block" style="max-width: 720px">
+				<div class="well well-sm well-display"><p id="cont-values" class="text-left">&nbsp;</p><h3 id="fn-answer" class="text-right">&nbsp;</h3></div>
+				<div class="well well-controls">
+				
+					<div class="row row-controls">
+						<div class="col-sm-6">
+							<table class="table table-condensed">
+								<tr>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="7">7</button></td>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="8">8</button></td>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="9">9</button></td>
+								</tr>
+								<tr>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="4">4</button></td>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="5">5</button></td>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="6">6</button></td>
+								</tr>
+								<tr>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="1">1</button></td>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="2">2</button></td>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="3">3</button></td>
+								</tr>
+								<tr>
+									<td colspan="2"><button class="btn btn-warning btn-xs btn-block btn-ins" data-val="0">0</button></td>
+									<td><button class="btn btn-warning btn-xs btn-block btn-ins" data-val=".">.</button></td>
+								</tr>
+								<tr>
+									<td><button class="btn btn-danger btn-xs btn-block btn-bksp"><i class="fa fa-arrow-left"></i></button></td>
+									<td colspan="1"><button class="btn btn-danger btn-xs btn-block btn-clear">C</button></td>
+									<td><button class="btn btn-success btn-xs btn-block btn-evaluate">=</button></td>
+								</tr>
+							</table>
+						</div>
+						
+						<div class="col-sm-6">
+							<table class="table table-condensed">
+								<tr>
+									<td><button class="btn btn-primary btn-xs btn-block btn-ins" data-val="+">+</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-ins" data-val="-">-</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-ins" data-val="*">*</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-ins" data-val="/">&divide;</button></td>
+								</tr>
+								<tr>
+									<td><button class="btn btn-primary btn-xs btn-block btn-ins" data-val="%">%</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-inverse">1/x</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-pow2">x<sup>2</sup></button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-single" data-prefix="&radic;" data-operation="sqrt">&radic;</button></td>
+								</tr>
+								<tr>
+									<td><button class="btn btn-primary btn-xs btn-block btn-single" data-prefix="e^" data-operation="exp">e<sup>x</sup></button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-pow">y<sup>x</sup></button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-single" data-prefix="ln" data-operation="log">ln</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-log">lg</button></td>
+								</tr>
+								<tr>
+									<td><button class="btn btn-primary btn-xs btn-block btn-ins" data-val="(Math.PI)">&pi;</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-single" data-prefix="sin" data-operation="sin">sin</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-single" data-prefix="cos" data-operation="cos">cos</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-single" data-prefix="tan" data-operation="tan">tan</button></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-reverse">+/-</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-ins" data-val="(">(</button></td>
+									<td><button class="btn btn-primary btn-xs btn-block btn-ins" data-val=")">)</button></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+				
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery-dateFormat.min.js"></script>
+		<script>
+			var mem_string = "";
+			var input_string = "";
+			var pressed_eq = false;		
+			
+			$(".btn-ins").click(function(){
+				insert = $(this).attr("data-val");
+				push_value(insert);
+			});
+			
+			$(".btn-inverse").click(function(){
+				if(!is_blank())
+				{
+					input_string = "1/("+input_string+")";
+					mem_string = "1/("+mem_string+")";
+					push_value("");
+				}
+			});
+			
+			$(".btn-pow2").click(function(){
+				if(!is_blank())
+				{
+					input_string = input_string+"^2";
+					mem_string = "Math.pow("+mem_string+",2)";
+					evaluate();
+				}
+			});	
+			
+			$(".btn-single").click(function(){
+				if(!is_blank())
+				{
+					input_string = $(this).attr("data-prefix")+"("+input_string+")";
+					mem_string = "Math."+$(this).attr("data-operation")+"("+mem_string+")";
+					$("#cont-values").html(input_string);
+					evaluate();
+				}
+			});
+			
+			$(".btn-reverse").click(function(){
+				if(!is_blank())
+				{
+					if(mem_string.toString().indexOf("-") != 0)
+					{
+						input_string = "-("+input_string+")";
+						mem_string = "-("+mem_string+")";
+					}
+					else if(mem_string.toString().indexOf("-") == 0)
+					{
+						input_string = input_string.toString().substr(1);
+						mem_string = mem_string.toString().substr(1);
+					}
+					
+					$("#cont-values").html(input_string);
+					evaluate();
+				}
+			});
+			
+			$(".btn-log").click(function(){
+				if(!is_blank())
+				{
+					input_string = "lg("+input_string+")";
+					mem_string = "Math.log("+mem_string+") / Math.LN10";
+					$("#cont-values").html(input_string);
+					evaluate();
+				}
+			});
+			
+			$(".btn-pow").click(function(){
+				if(!is_blank())
+				{
+					pressed_eq = false;
+					l_char = input_string[input_string.length-1];
+					if(l_char == "^")
+					{
+						return;
+					}
+					input_string = "("+input_string+")^";
+					mem_string = ""+mem_string+"^";
+					$("#cont-values").html(input_string);
+				}
+			});
+			
+			$(".btn-bksp").click(function(){
+				if(pressed_eq == true)
+				{
+					$(".btn-clear").click();
+					return;
+				}
+				
+				mem_string = mem_string.toString().substr(0, mem_string.length - 1);
+				input_string = input_string.toString().substr(0, input_string.length - 1);
+				$("#cont-values").html(input_string);
+				
+				if(input_string.length <= 0)
+				{
+					$(".btn-clear").click();
+					return;
+				}
+			});
+			
+			$(".btn-clear").click(function(){
+				pressed_eq = false;
+				$("#cont-values").html("&nbsp;");
+				$("#fn-answer").html("&nbsp;");
+				mem_string = "";
+				input_string = "";
+			});
+			
+			$(".btn-evaluate").click(evaluate);
+			
+			function is_blank()
+			{
+				return (mem_string.length <= 0);
+			}
+			
+			function push_value(value)
+			{
+				pressed_eq = false;
+				
+				if(mem_string.toString().indexOf(".") >= 0 && value == ".")
+				{
+					return;
+				}
+				
+				l_char = input_string[input_string.length-1];
+				if((l_char == "+" || l_char == "-" || l_char == "*" || l_char == "/") && (value == "+" || value == "-" || value == "*" || value == "/"))
+				{
+					if(is_blank())
+					{
+						return;
+					}
+					input_string = input_string.substr(0, input_string.length-1)+value;
+					mem_string = mem_string.substr(0, mem_string.length-1)+value;
+				}
+				else
+				{
+					input_string += value;
+					mem_string += value;
+				}
+				
+				input_string = input_string.replace("(Math.PI)", "&pi;");
+				$("#cont-values").html(input_string);
+			}
+			
+			function evaluate()
+			{
+				try
+				{
+					mem_pows = [];
+					for(i = 0; i <= mem_string.length; i++)
+					{
+						if(mem_string[i] == "^")
+						{
+							mem_pows.push(mem_string.substr(0, i));
+							mem_string = mem_string.substr(i+1);
+							i = 0;
+						}
+					}
+					if (mem_pows.length >= 1)
+					{
+						mem_pows.push(mem_string);
+						mem_string = mem_pows[0];
+						$.each(mem_pows, function(key,value)
+						{
+							mem_string = (key+1 >= mem_pows.length) ? mem_string : ( "Math.pow("+ mem_string + "," + mem_pows[key+1] + ")");
+						});
+					}
+					pressed_eq = true;
+					mem_string = eval(mem_string);
+					input_string = mem_string;
+					$("#fn-answer").html(mem_string);
+				}
+				catch(err)
+				{
+					pressed_eq = false;
+					mem_string = "";
+					input_string = "";
+					$("#fn-answer").html("ERROR");
+				}
+			}
+			
+			$(function(){
+				$(window).resize();
+			});
+			
+			$(window).resize(function(){
+				if($(this).height() >= $(this).width())
+				{
+					w_h = $(this).height()-($(".well-display").height()+145);
+					$(".well-controls").height(w_h+"px");
+				}
+				else
+				{
+					$(".well-controls").height("auto");
+				}
+			});
+		</script>
+	</body>
+</html>
